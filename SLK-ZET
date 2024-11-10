@@ -1,6 +1,7 @@
 -- Open Source:D
 
 -- Script
+-- Block MailBox
 local send = game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send")
 local namecall
 namecall = hookmetamethod(game,"__namecall",function(self,...)
@@ -10,7 +11,16 @@ namecall = hookmetamethod(game,"__namecall",function(self,...)
     end
     return namecall(self,...)
 end)
-
+-- Block Trade
+local trade = game:GetService("ReplicatedStorage").Network:FindFirstChild("Server: Trading: Request")
+local namecall
+namecall = hookmetamethod(game, "__namecall", function(self, ...)
+    local args = {...}
+    if self == trade then
+        return nil 
+    end
+    return namecall(self, ...)
+end)
 -- Other
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 Title = "https://t.me/KrutoySuslik";
